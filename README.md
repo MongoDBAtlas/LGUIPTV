@@ -35,22 +35,12 @@ __Agenda__
     - Index & Explain
 
 
-- Break
-        
-
-5. __Operation__
-    - Monitoring
-    - Backup & Restore
-    
-     
-- __Handson__  [GitHub][5]
-    - Backup & Restore
 
 
 [0]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/00.pre-work
 
-[1]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/01.Provision%20and%20CRUD
+[1]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD
 
-[3]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.index%20and%20aggregation
+[3]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/03.index%20and%20aggregation
 
 [5]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/03.operation
