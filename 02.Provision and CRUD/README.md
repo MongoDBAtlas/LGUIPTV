@@ -65,7 +65,7 @@ AtlasSpringDriverApplication을 실행 하여 줍니다.
 Query로 데이터를 확인 합니다.
 
 ````
-Atlas handson> db.Users.find()
+Atlas handson> db.Userss.find()
 [
   {
     _id: ObjectId("64bbe8460f740053372d75e3"),
@@ -173,7 +173,7 @@ Update Result : AcknowledgedUpdateResult{matchedCount=1, modifiedCount=1, upsert
 Query로 데이터를 확인 합니다.
 
 ````
-Atlas handson> db.Users.find()
+Atlas handson> db.Userss.find()
 [
   {
     _id: ObjectId("64bbe8460f740053372d75e3"),
@@ -240,7 +240,7 @@ Update Result : AcknowledgedUpdateResult{matchedCount=1, modifiedCount=1, upsert
 Query로 데이터를 확인 합니다.
 
 ````
-Atlas handson> db.Users.find()
+Atlas handson> db.Userss.find()
 [
   {
     _id: ObjectId("64bbe8460f740053372d75e3"),
@@ -300,7 +300,7 @@ Delete Result : AcknowledgedDeleteResult{deletedCount=1}
 Query로 데이터를 확인 합니다.
 
 ````
-Atlas handson> db.Users.find()
+Atlas handson> db.Userss.find()
 
 
 ````
@@ -350,15 +350,15 @@ Mongosh을 이용하여 Atlas와 연결하여 데이터를 생성 합니다.
 
 먼저 데이터베이스를 선택하여야 합니다.
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use samsung
-switched to db samsung
-Atlas atlas-t0pzlo-shard-0 [primary] samsung>
+Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use handson
+switched to db handson
+Atlas atlas-t0pzlo-shard-0 [primary] handson>
 ````
 
 입력할 데이터를 생성하여 줍니다. (변수로 newUser를 만들어 줍니다)
 
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> let newUser=  {
+Atlas atlas-t0pzlo-shard-0 [primary] handson> let newUser=  {
         ssn:"123-456-0001", 
         email:"user@email.com", 
         name:"Gildong Hong", 
@@ -372,7 +372,7 @@ Atlas atlas-t0pzlo-shard-0 [primary] samsung> let newUser=  {
 다음 데이터 베이스 명령으로 데이터를 생성 합니다.
 
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.insertOne(newUser)
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.insertOne(newUser)
 {
   acknowledged: true,
   insertedId: ObjectId("64454591813babb209a83f4d")
@@ -388,14 +388,14 @@ Mongosh을 이용하여 Atlas와 연결하여 데이터를 조회 합니다.
 
 먼저 데이터베이스를 선택하여야 합니다. (이미 해당 데이터베이스를 사용 하고 있으면 생략 합니다)
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use samsung
-switched to db samsung
-Atlas atlas-t0pzlo-shard-0 [primary] samsung>
+Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use handson
+switched to db handson
+Atlas atlas-t0pzlo-shard-0 [primary] handson>
 ````
 
 데이터를 조회 합니다
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.find({ssn:"123-456-0001"})
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.find({ssn:"123-456-0001"})
 [
   {
     _id: ObjectId("64454591813babb209a83f4d"),
@@ -423,19 +423,19 @@ Mongosh을 이용하여 Atlas와 연결하여 데이터를 업데이트 합니�
 
 먼저 데이터베이스를 선택하여야 합니다. (이미 해당 데이터베이스를 사용 하고 있으면 생략 합니다)
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use samsung
-switched to db samsung
-Atlas atlas-t0pzlo-shard-0 [primary] samsung>
+Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use handson
+switched to db handson
+Atlas atlas-t0pzlo-shard-0 [primary] handson>
 ````
 
 수정할 데이터를 ssn을 입력 하여 줍니다.
 수정 대상 데이터의 ssn 및 수정할 데이터 항목을 확인 수정 하여 줍니다.
 `````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> let query = {"ssn":"123-456-0001"}
+Atlas atlas-t0pzlo-shard-0 [primary] handson> let query = {"ssn":"123-456-0001"}
 
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> let updatedata = { $set: { email: "gildong@email.com" } }
+Atlas atlas-t0pzlo-shard-0 [primary] handson> let updatedata = { $set: { email: "gildong@email.com" } }
 
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.updateOne(query,updatedata)
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.updateOne(query,updatedata)
 {
   acknowledged: true,
   insertedId: null,
@@ -448,7 +448,7 @@ Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.updateOne(query,updatedata
 
 데이터를 수정 결과를 확인 합니다. (이메일 주소가 수정 된 것을 확인 합니다)
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.find({"ssn":"123-456-0001"})
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.find({"ssn":"123-456-0001"})
 [
   {
     _id: ObjectId("64454591813babb209a83f4d"),
@@ -476,19 +476,19 @@ Mongosh을 이용하여 Atlas와 연결하여 데이터를 업데이트 (Hobbies
 
 먼저 데이터베이스를 선택하여야 합니다. (이미 해당 데이터베이스를 사용 하고 있으면 생략 합니다)
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use samsung
-switched to db samsung
-Atlas atlas-t0pzlo-shard-0 [primary] samsung>
+Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use handson
+switched to db handson
+Atlas atlas-t0pzlo-shard-0 [primary] handson>
 ````
 
 수정할 데이터를 ssn을 입력 하여 줍니다.
 수정 대상 데이터의 ssn 및 Hobby 항목을 추가 하여 줍니다. (취미로 Reading 추가 하기)
 `````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> let query = {"ssn":"123-456-0001"}
+Atlas atlas-t0pzlo-shard-0 [primary] handson> let query = {"ssn":"123-456-0001"}
 
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> let updatedata ={$push:{Hobbies:"Reading"}}
+Atlas atlas-t0pzlo-shard-0 [primary] handson> let updatedata ={$push:{Hobbies:"Reading"}}
 
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.updateOne(query,updatedata)
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.updateOne(query,updatedata)
 {
   acknowledged: true,
   insertedId: null,
@@ -501,7 +501,7 @@ Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.updateOne(query,updatedata
 
 데이터를 수정 결과를 확인 합니다. (Hobby에 Reading이 추가되어 있음)
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.find({"ssn":"123-456-0001"})
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.find({"ssn":"123-456-0001"})
 [
   {
     _id: ObjectId("64454591813babb209a83f4d"),
@@ -530,24 +530,24 @@ Mongosh을 이용하여 Atlas와 연결하여 데이터를 삭제 합니다.
 
 먼저 데이터베이스를 선택하여야 합니다. (이미 해당 데이터베이스를 사용 하고 있으면 생략 합니다)
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use samsung
-switched to db samsung
-Atlas atlas-t0pzlo-shard-0 [primary] samsung>
+Atlas atlas-t0pzlo-shard-0 [primary] myFirstDatabase> use handson
+switched to db handson
+Atlas atlas-t0pzlo-shard-0 [primary] handson>
 ````
 
 삭제할 데이터를 수정 하여 줍니다.
 삭제할 데이터의 ssn 및 입력 하여줍니다.
 `````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.deleteOne({ssn:"123-456-0001"})
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.deleteOne({ssn:"123-456-0001"})
 { acknowledged: true, deletedCount: 1 }
 
 `````
 
 데이터를 확인 합니다.
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> db.user.findOne({ssn:"123-456-0001"})
+Atlas atlas-t0pzlo-shard-0 [primary] handson> db.Users.findOne({ssn:"123-456-0001"})
 null
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> 
+Atlas atlas-t0pzlo-shard-0 [primary] handson> 
 ````
 
 
@@ -570,9 +570,9 @@ A document was inserted with the _id: 63e32381541c67cc69d7897a
 Mongosh을 이용하는 경우 다음과 같이 생성 하여 줍니다.
 
 ````
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> let i=0
+Atlas atlas-t0pzlo-shard-0 [primary] handson> let i=0
 
-Atlas atlas-t0pzlo-shard-0 [primary] samsung> for (i;i<100;i++) {
+Atlas atlas-t0pzlo-shard-0 [primary] handson> for (i;i<100;i++) {
 const newUser = {
             ssn:"123-456-000"+i, 
             email:"user"+i+"@email.com", 
@@ -583,7 +583,7 @@ const newUser = {
             Addresses:[{"Address Name":"Work","Street":"431, Teheran-ro GangNam-gu ","City":"Seoul", "Zip":"06159"}], 
             Phones:[{"type":"mobile","number":"010-5555-1234"}]
           };
-db.user.insertOne(newUser);
+db.Users.insertOne(newUser);
 }
 {
   acknowledged: true,
@@ -616,7 +616,7 @@ Connection String을 복사하여 줍니다. 이후 Compass를 실행 하여 줍
 
 
 #### 데이터 조회
-데이터베이스에서 생성한 samsung 탭을 클릭 하면 컬렉션 리스트를 볼 수 있습니다. 생성한 user컬렉션을 선택 합니다.    
+데이터베이스에서 생성한 handson 탭을 클릭 하면 컬렉션 리스트를 볼 수 있습니다. 생성한 user컬렉션을 선택 합니다.    
 
 <img src="/02.Provision and CRUD/images/image05.png" width="90%" height="90%">     
 
