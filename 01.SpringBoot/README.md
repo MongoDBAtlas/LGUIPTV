@@ -4,8 +4,9 @@
 
 
 ### [&rarr; Spring Framework Project](#Project)
-### [&rarr; Spring & MongoDB Driver](#MongoTemplates)
-
+### [&rarr; Spring & MongoDB Driver](#Driver)
+### [&rarr; Spring & MongoDBTemplate](#MongoTemplates)
+### [&rarr; Spring Data](#Repository)
 <br>
 
 ### Project
@@ -36,7 +37,7 @@ Dependency를 POM에 추가 하여 줍니다.
 MongoClient를 생성 하여 Connection 한 후 Database, Collection을 선택 한 후 쿼리를 진행 합니다.
 
 
-#### MongoTemplates
+### MongoTemplates
 
 Spring Framework이 제공하는 Mongo Templates를 이용하여 개발 하게 됩니다.   
 Repository가 제공하는 기본 CRUD등을 사용하지 않기 때문에 일이 구현해야 합니다. 
@@ -98,6 +99,6 @@ Update 처리
 ````
 
 
-#### Repository
+### Repository
 
 Spring Framework이 제공하는 Respository를 사용 하는 것으로 기본 CRUD외에 필요한 메서드를 repository interface에 작성하고 implementation 에 구현해 주어야 한다.   
