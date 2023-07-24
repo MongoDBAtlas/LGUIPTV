@@ -36,7 +36,7 @@ Dependency를 POM에 추가 하여 줍니다.
 
 MongoClient를 생성 하여 Connection 한 후 Database, Collection을 선택 한 후 쿼리를 진행 합니다.
 
-[SpringFramework MongoDB Driver](/02.Provision and CRUD/application/AtlasSpringDriver/)
+[SpringFramework MongoDB Driver][0]
 
 ### MongoTemplates
 
@@ -99,8 +99,13 @@ Update 처리
 
 ````
 
-[SpringFramework MongoDB Driver](/02.Provision and CRUD/application/AtlasSpringMongoTemplate/)
+[SpringFramework MongoDB Driver][1]
 
 ### Repository
 
 Spring Framework이 제공하는 Respository를 사용 하는 것으로 기본 CRUD외에 필요한 메서드를 repository interface에 작성하고 implementation 에 구현해 주어야 한다.   
+
+
+[0]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD/application/AtlasSpringDriver/
+
+[1]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD/application/AtlasSpringMongoTemplate/
