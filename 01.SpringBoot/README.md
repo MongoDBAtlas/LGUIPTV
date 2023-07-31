@@ -101,6 +101,49 @@ Update 처리
 
 [SpringFramework MongoTemplate][1]
 
+_class 를 제거 하는 방법
+
+Application.properties를 사용하여 연결 되는 부분을 중간에 재정의 하는 것으로 다음과 클래스를 추가 하여 주고 생성된 mongoTemplate를 사용 하면 됩니다.   
+converter.setTypeMapper로 DefaultMongoTypeMapper(null)를 넣어주면 됩니다.    
+
+
+````
+package com.mongodb.spring.template.ocnfig;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+
+@Configuration
+public class MongoConfig {
+
+	@Value("${spring.data.mongodb.uri}")
+    private String mongodb_uri;
+
+    @Bean(name = "mongoTemplate")
+    public MongoTemplate mongoTemplate()  {
+        MongoClient mongoClient = MongoClients.create(mongodb_uri);
+        MongoDatabaseFactory factory = new SimpleMongoClientDatabaseFactory(mongoClient, "handson");
+        MappingMongoConverter converter = new MappingMongoConverter(new DefaultDbRefResolver(factory), new MongoMappingContext());
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+
+        return new MongoTemplate(factory, converter);
+    }
+
+}
+
+````
+
 ### Repository
 
 Spring Framework이 제공하는 Respository를 사용 하는 것으로 기본 CRUD외에 필요한 메서드를 repository interface에 작성하고 implementation 에 구현해 주어야 한다.   
@@ -108,6 +151,47 @@ Spring Framework이 제공하는 Respository를 사용 하는 것으로 기본 C
 [SpringFramework JPA][2]
 
 
+_class 를 제거 하는 방법    
+아래와 같이 클래스를 추가 하여 주면 됩니다.    
+
+````
+package com.mongodb.spring.data.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.core.convert.DbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
+
+@Configuration
+public class MongoConfig {
+    @Autowired
+    private MongoDatabaseFactory mongoFactory;
+
+    @Autowired
+    private MongoMappingContext mongoMappingContext;
+
+    @Bean
+    public MappingMongoConverter mappingMongoConverter() {
+
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoFactory);
+        MappingMongoConverter converter = new MappingMongoConverter(dbRefResolver, 
+mongoMappingContext);
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+
+        return converter;
+    }
+}
+
+````
+
+
 [0]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD/application/AtlasSpringDriver/
 
 [1]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD/application/AtlasSpringMongoTemplate/
+
+[2]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD/application/AtlasSpringJPA/
