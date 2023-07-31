@@ -99,11 +99,13 @@ Update 처리
 
 ````
 
-[SpringFramework MongoDB Driver][1]
+[SpringFramework MongoTemplate][1]
 
 ### Repository
 
 Spring Framework이 제공하는 Respository를 사용 하는 것으로 기본 CRUD외에 필요한 메서드를 repository interface에 작성하고 implementation 에 구현해 주어야 한다.   
+
+[SpringFramework JPA][2]
 
 
 [0]: https://github.com/MongoDBAtlas/LGUIPTV/tree/main/02.Provision%20and%20CRUD/application/AtlasSpringDriver/
